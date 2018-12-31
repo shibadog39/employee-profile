@@ -1,2 +1,22 @@
-%h1 Employees#new
-%p Find me in app/views/employees/new.html.haml
+%h1 新規登録
+
+.nav.justify-content-end
+  = link_to '一覧', employees_path, class: 'nav-link'
+
+= form_with model: @employee, local: true do |f|
+  .form_group
+    = f.label :last_name
+    = f.text_field :last_name, class: 'form-control', id: 'last_name'
+  .form_group
+    = f.label :first_name
+    = f.text_field :first_name, class: 'form-control', id: 'first_name'
+  .form_group
+    = f.label :email
+    = f.text_field :email, class: 'form-control', id: 'email'
+  .form_group
+    = f.label :password
+    = f.password_field :password, class: 'form-control', id: 'password'
+  .form_group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, class: 'form-control', id: 'password_confirmation'
+  = f.submit nil, class: 'btn btn-primary'  

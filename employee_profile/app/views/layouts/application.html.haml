@@ -10,5 +10,8 @@
   %body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
       .navbar-brand E-Profile
-    .container  
+    .container
+      - if flash.notice.present?
+        .alert.alert-success
+          = flash.notice
     = yield
