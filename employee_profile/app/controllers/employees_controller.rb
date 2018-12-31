@@ -12,6 +12,7 @@ class EmployeesController < ApplicationController
   end
 
   def edit
+    @employee = Employee.find(params[:id])
   end
 
   def create
@@ -19,6 +20,12 @@ class EmployeesController < ApplicationController
     set_default_password employee
     employee.save!
     redirect_to employees_url, notice: "新しく「#{employee.last_name + ' ' + employee.first_name}さん」を登録しました。"
+  end
+
+  def update
+    employee = Employee.find(params[:id])
+    employee.update!(employee_params)
+    redirect_to employees_url, notice: "「#{employee.last_name + ' ' + employee.first_name}さん」のプロフィールを更新しました。"
   end
 
   private

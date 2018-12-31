@@ -3,14 +3,4 @@
 .nav.justify-content-end
   = link_to '一覧', employees_path, class: 'nav-link'
 
-= form_with model: @employee, local: true do |f|
-  .form_group
-    = f.label :last_name
-    = f.text_field :last_name, class: 'form-control', id: 'last_name'
-  .form_group
-    = f.label :first_name
-    = f.text_field :first_name, class: 'form-control', id: 'first_name'
-  .form_group
-    = f.label :email
-    = f.text_field :email, class: 'form-control', id: 'email'
-  = f.submit nil, class: 'btn btn-primary'
+= render partial: 'form', locals: {employee: @employee}

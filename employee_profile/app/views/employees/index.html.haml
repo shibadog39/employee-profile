@@ -7,8 +7,10 @@
     %tr
       %th= '名前'
       %th= Employee.human_attribute_name(:created_at)
+      %th
     %tbody
       - @employees.each do |e|
         %tr
           %td= link_to fullname(e), e
           %td= e.created_at
+          %td= link_to '編集', edit_employee_path(e), class: 'btn btn-primary mr-3'

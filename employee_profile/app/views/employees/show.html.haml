@@ -17,3 +17,5 @@
       %tr
         %th= Employee.human_attribute_name(:updated_at)
         %td= @employee.updated_at
+
+= link_to '編集', edit_employee_path(@employee), class: 'btn btn-primary mr-3'        
