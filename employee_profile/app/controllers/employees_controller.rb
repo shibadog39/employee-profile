@@ -28,6 +28,12 @@ class EmployeesController < ApplicationController
     redirect_to employees_url, notice: "「#{employee.last_name + ' ' + employee.first_name}さん」のプロフィールを更新しました。"
   end
 
+  def destroy
+    employee = Employee.find(params[:id])
+    employee.destroy
+    redirect_to employees_url, notice: "「#{employee.last_name + ' ' + employee.first_name}さん」を削除しました。"
+  end
+
   private
 
   def employee_params
