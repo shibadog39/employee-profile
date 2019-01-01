@@ -8,7 +8,8 @@
     %tr
       %th= '名前'
       %th= Employee.human_attribute_name(:created_at)
-      %th
+      - if login_emp.admin?
+        %th
       - if login_emp.admin?
         %th
     %tbody
@@ -16,7 +17,7 @@
         %tr
           %td= link_to fullname(e), e
           %td= e.created_at
-          - if login_emp.id == e.id
-            %td= link_to '編集', edit_employee_path(e), class: 'btn btn-primary mr-3'
           - if login_emp.admin?
             %td= link_to '削除', e, method: :delete, data: {confirm: "#{fullname(e)} さんを削除しますか？"}, class: 'btn btn-danger mr-3'
+          - if login_emp.id == e.id
+            %td= link_to '編集', edit_employee_path(e), class: 'btn btn-primary mr-3'

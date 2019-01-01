@@ -59,7 +59,17 @@ class EmployeesController < ApplicationController
   end
 
   def fullname e
-    @full_name ||= e.last_name << ' ' << e.first_name
+    #ボツ案 破壊的メソッドだから繰り返し呼ばれたときに名前が伸びていく
+    #e.last_name << ' ' << e.first_name
+
+    #冗長すぎて嫌な案
+    #str = ''
+    #str << e.last_name
+    #str << ' '
+    #str << e.first_name
+
+    #行けるけどいいのか微妙案
+    e.last_name + ' ' + e.first_name
   end
 
   def require_admin
