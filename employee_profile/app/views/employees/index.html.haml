@@ -16,6 +16,7 @@
         %tr
           %td= link_to fullname(e), e
           %td= e.created_at
-          %td= link_to '編集', edit_employee_path(e), class: 'btn btn-primary mr-3'
+          - if login_emp.id == e.id
+            %td= link_to '編集', edit_employee_path(e), class: 'btn btn-primary mr-3'
           - if login_emp.admin?
             %td= link_to '削除', e, method: :delete, data: {confirm: "#{fullname(e)} さんを削除しますか？"}, class: 'btn btn-danger mr-3'

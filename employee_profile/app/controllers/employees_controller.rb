@@ -16,6 +16,7 @@ class EmployeesController < ApplicationController
 
   def edit
     @employee = Employee.find(params[:id])
+    require_yourself @employee
   end
 
   def create
@@ -31,6 +32,7 @@ class EmployeesController < ApplicationController
 
   def update
     @employee = Employee.find(params[:id])
+    require_yourself @employee
 
     if @employee.update(employee_params)
       redirect_to @employee, notice: "「#{fullname @employee}さん」のプロフィールを更新しました。"
@@ -62,5 +64,9 @@ class EmployeesController < ApplicationController
 
   def require_admin
     redirect_to root_path unless login_emp.admin?
+  end
+
+  def require_yourself emp
+    redirect_to root_path unless login_emp.id == emp.id
   end
 end
