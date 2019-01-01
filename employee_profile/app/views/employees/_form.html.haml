@@ -1,3 +1,8 @@
+- if employee.errors.present?
+  %ul#error_explanation
+    - employee.errors.full_messages.each do |msg|
+      %li= msg
+
 = form_with model: employee, local: true do |f|
   .form_group
     = f.label :last_name
@@ -8,4 +13,8 @@
   .form_group
     = f.label :email
     = f.text_field :email, class: 'form-control', id: 'email'
+  .form-check
+    = f.label :admin, class: 'form-check-label' do
+      = f.check_box :admin, class: 'form-check-input'
+      管理者権限
   = f.submit nil, class: 'btn btn-primary'

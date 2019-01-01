@@ -12,6 +12,9 @@
       %th= Employee.human_attribute_name(:email)
       %td= @employee.email
     %tr
+      %th= Employee.human_attribute_name(:admin)
+      %td= @employee.admin? ? 'あり' : 'なし'
+    %tr
       %th= Employee.human_attribute_name(:created_at)
       %td= @employee.created_at
       %tr
@@ -19,4 +22,4 @@
         %td= @employee.updated_at
 
 = link_to '編集', edit_employee_path(@employee), class: 'btn btn-primary mr-3'
-%td= link_to '削除', @employee, method: :delete, data: {confirm: "#{fullname(@employee)} さんを削除しますか？"}, class: 'btn btn-danger mr-3'      
+%td= link_to '削除', @employee, method: :delete, data: {confirm: "#{fullname(@employee)} さんを削除しますか？"}, class: 'btn btn-danger mr-3'
