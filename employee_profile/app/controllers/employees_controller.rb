@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
   helper_method :fullname
+  before_action :require_admin, only: [:new, :create, :destroy]
 
   def index
     @employees = Employee.all
@@ -57,5 +58,9 @@ class EmployeesController < ApplicationController
 
   def fullname e
     @full_name ||= e.last_name << ' ' << e.first_name
+  end
+
+  def require_admin
+    redirect_to root_path unless login_emp.admin?
   end
 end

@@ -1,5 +1,6 @@
 %h1 社員一覧
-= link_to '新規登録', new_employee_path, class: 'btn btn-primary'
+- if login_emp.admin?
+  = link_to '新規登録', new_employee_path, class: 'btn btn-primary'
 
 .mb-3
 %table.table.table-hover
@@ -8,11 +9,13 @@
       %th= '名前'
       %th= Employee.human_attribute_name(:created_at)
       %th
-      %th
+      - if login_emp.admin?
+        %th
     %tbody
       - @employees.each do |e|
         %tr
           %td= link_to fullname(e), e
           %td= e.created_at
           %td= link_to '編集', edit_employee_path(e), class: 'btn btn-primary mr-3'
-          %td= link_to '削除', e, method: :delete, data: {confirm: "#{fullname(e)} さんを削除しますか？"}, class: 'btn btn-danger mr-3'
+          - if login_emp.admin?
+            %td= link_to '削除', e, method: :delete, data: {confirm: "#{fullname(e)} さんを削除しますか？"}, class: 'btn btn-danger mr-3'
