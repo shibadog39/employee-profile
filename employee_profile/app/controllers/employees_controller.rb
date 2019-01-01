@@ -43,6 +43,7 @@ class EmployeesController < ApplicationController
 
   def destroy
     employee = Employee.find(params[:id])
+    redirect_to root_path, notice: "自分のことを削除することはできません。" if login_emp.id == employee.id
     employee.destroy
     redirect_to employees_url, notice: "「#{fullname employee}さん」を削除しました。"
   end

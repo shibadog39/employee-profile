@@ -23,5 +23,5 @@
 
 - if login_emp.id == @employee.id
   = link_to '編集', edit_employee_path(@employee), class: 'btn btn-primary mr-3'
-- if login_emp.admin?
+- if login_emp.admin? && login_emp.id != @employee.id
   = link_to '削除', @employee, method: :delete, data: {confirm: "#{fullname(@employee)} さんを削除しますか？"}, class: 'btn btn-danger mr-3'
