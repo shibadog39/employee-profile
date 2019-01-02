@@ -37,7 +37,7 @@ class EmployeesController < ApplicationController
     if @employee.update(employee_params)
       redirect_to @employee, notice: "「#{fullname @employee}さん」のプロフィールを更新しました。"
     else
-      render :new
+      render :edit
     end
   end
 

@@ -13,9 +13,9 @@
 
       #ul.navbar-nav.ml-auto
         - if login_emp
-          #li.nav-item= "こんにちは。#{login_emp.last_name}さん"
           #li.nav-item= link_to '社員一覧', employees_path, class: 'nav-link'
           #li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+          #li.nav-item= "こんにちは。#{login_emp.last_name}さん"
         - else
           #li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
 
