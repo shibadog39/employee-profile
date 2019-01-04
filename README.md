@@ -8,5 +8,5 @@
 - admin権限を持ったユーザーは、ユーザーの追加・削除が可能
 
 # README
-管理者ユーザー: admin@test.com/password
-通常ユーザー: test@test.com/password
+* 管理者ユーザー: admin@test.com/password
+* 通常ユーザー: test@test.com/password
