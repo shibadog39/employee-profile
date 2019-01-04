@@ -15,6 +15,7 @@ class EmployeesController < ApplicationController
   end
 
   def edit
+    @edit_profile =  params[:edit_profile]
     @employee = Employee.find(params[:id])
     require_yourself @employee
   end
@@ -51,7 +52,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+    params.require(:employee).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :team, :hobby, :comment)
   end
 
   def set_default_password employee

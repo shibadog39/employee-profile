@@ -1,0 +1,21 @@
+%h1 プロフィールの編集
+
+.nav.justify-content-end
+  = link_to '一覧', employees_path, class: 'nav-link'
+
+- if employee.errors.present?
+  %ul#error_explanation
+    - employee.errors.full_messages.each do |msg|
+      %li= msg
+
+= form_with model: employee, local: true do |f|
+  .form_group
+    = f.label :team
+    = f.text_field :team, class: 'form-control', id: 'team'
+  .form_group
+    = f.label :hobby
+    = f.text_field :hobby, class: 'form-control', id: 'hobby'
+  .form_group
+    = f.label :comment
+    = f.text_area :comment, row:5, class: 'form-control', id: 'comment'
+  = f.submit nil, class: 'btn btn-primary'

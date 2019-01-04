@@ -1,6 +1,4 @@
-%h1 プロフィールの編集
-
-.nav.justify-content-end
-  = link_to '一覧', employees_path, class: 'nav-link'
-
-= render partial: 'form', locals: {employee: @employee}
+-if @edit_profile
+  = render partial: 'edit_profile_info', locals: {employee: @employee}
+-else
+  = render partial: 'edit_basic_info', locals: {employee: @employee}

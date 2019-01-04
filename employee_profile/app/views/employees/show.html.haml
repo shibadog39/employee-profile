@@ -3,7 +3,16 @@
 .nav.justify-content-end
   = link_to '一覧', employees_path, class: 'nav-link'
 
-%table.table.table-hover
+- if login_emp.id == @employee.id
+  = link_to 'プロフィールを編集する', edit_employee_path(@employee, edit_profile: true), class: 'btn btn-primary mr-3'
+  = link_to 'ユーザー管理', edit_employee_path(@employee), class: 'btn btn-warning mr-3'
+- if login_emp.admin? && login_emp.id != @employee.id
+  = link_to '削除', @employee, method: :delete, data: {confirm: "#{fullname(@employee)} さんを削除しますか？"}, class: 'btn btn-danger mr-3'
+
+%hr.hr-primary
+
+%p.text-info 基本情報
+%table.table.table-hover.table-striped
   %tbody
     %tr
       %th= '名前'
@@ -12,16 +21,28 @@
       %th= Employee.human_attribute_name(:email)
       %td= @employee.email
     %tr
-      %th= Employee.human_attribute_name(:admin)
-      %td= @employee.admin? ? 'あり' : 'なし'
+      %th= Employee.human_attribute_name(:team)
+      %td= @employee.team
     %tr
-      %th= Employee.human_attribute_name(:created_at)
-      %td= @employee.created_at
-      %tr
-        %th= Employee.human_attribute_name(:updated_at)
-        %td= @employee.updated_at
+      %th= Employee.human_attribute_name(:hobby)
+      %td= @employee.hobby
+    %tr
+      %th= Employee.human_attribute_name(:comment)
+      %td= @employee.comment
 
-- if login_emp.id == @employee.id
-  = link_to '編集', edit_employee_path(@employee), class: 'btn btn-primary mr-3'
-- if login_emp.admin? && login_emp.id != @employee.id
-  = link_to '削除', @employee, method: :delete, data: {confirm: "#{fullname(@employee)} さんを削除しますか？"}, class: 'btn btn-danger mr-3'
+%p.text-info 職歴
+%table.table.table-hover.table-striped
+  %thead.thead-default
+    %tr
+      %th= '年数'
+      %th= '所属'
+      %th= 'ミッション'
+  %tbody
+    %tr
+      %td= '1.5年'
+      %td= 'wap株式会社 SCM開発'
+      %td= 'hueのかいはつ。発注管理のリリース'
+    %tr
+      %td= '0.5年'
+      %td= '株式会社メドピア エンジニア'
+      %td= '宿題を終わらせること'
