@@ -37,12 +37,9 @@
       %th= '年数'
       %th= '所属'
       %th= 'ミッション'
-  %tbody
-    %tr
-      %td= '1.5年'
-      %td= 'wap株式会社 SCM開発'
-      %td= 'hueのかいはつ。発注管理のリリース'
-    %tr
-      %td= '0.5年'
-      %td= '株式会社メドピア エンジニア'
-      %td= '宿題を終わらせること'
+    %tbody
+      - @employee.work_histories.each do |h|
+        %tr
+          %td= h.year
+          %td= h.company + " " + h.team
+          %td= h.mission

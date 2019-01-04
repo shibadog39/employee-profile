@@ -18,4 +18,26 @@
   .form_group
     = f.label :comment
     = f.text_area :comment, row:5, class: 'form-control', id: 'comment'
+
+  %hr.hr-primary
+
+  ="職歴"
+  %table.table.table-hover.table-striped
+    %tbody
+      %tr
+        %th= "年数"
+        %th= "企業"
+        %th= "組織"
+        %th= "ミッション"
+        %th
+      = f.nested_fields_for :work_histories, wrapper_tag: :tr do |h|
+        %td= h.number_field :year, class: 'form-control'
+        %td= h.text_field :company, class: 'form-control'
+        %td= h.text_field :team, class: 'form-control'
+        %td= h.text_field :mission, class: 'form-control'
+        %td= h.remove_nested_fields_link '削除', class: 'btn btn-danger', role: 'button'
+  = f.add_nested_fields_link :work_histories, '追加', class: 'btn btn-primary', role: 'button'
+
+  %hr.hr-primary
+
   = f.submit nil, class: 'btn btn-primary'
